@@ -70,15 +70,17 @@ class Camera:
         self.pos = pos
 
     def get_int_pos(self):
-        return int(self.pos[0]+self.offset[0]), int (self.pos[1]+self.offset[1])
+        return int(self.pos[0]+self.offset[0]), int(self.pos[1]+self.offset[1])
 
-    
+    def get_pos(self):
+        return self.pos[0]+self.offset[0], self.pos[1]+self.offset[1]
 
         
 class main_w_aron(Window):
     def __init__(self):
         super().__init__("Slice Slice")
-        self.camera = Camera((-self.display.get_width()//2, -self.display.get_height()//2))
+        self.camera = Camera((-self.display.get_width()//2, 
+                            -self.display.get_height()//2))
 
         self.aron = Sprite(self.display, (0,0), 1, 0.5, 20)
 
@@ -91,8 +93,8 @@ class main_w_aron(Window):
 
     def draw(self):
         print(self.aron.x, self.aron.y)
-        self.bg.draw(self.camera.get_int_pos())
-        self.aron.draw(self.camera.get_int_pos())
+        self.bg.draw(self.camera.get_pos())
+        self.aron.draw(self.camera.get_pos())
 
     def keydown(self, key):
         super().keydown(key)

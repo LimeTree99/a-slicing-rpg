@@ -22,7 +22,7 @@ class Sprite:
         self.radious = 40
 
     def draw(self, camera):
-        pygame.draw.circle(self.display, white, [int(self.x)-camera[0], int(self.y) - camera[1]], self.radious)
+        pygame.draw.circle(self.display, white, [int(self.x-camera[0]), int(self.y - camera[1])], self.radious)
 
     def change_values(self):
         self.vx += self.ax
