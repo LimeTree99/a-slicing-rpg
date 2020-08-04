@@ -4,7 +4,7 @@ import os
 class Window:
     def __init__(self,
                  window_name,
-                 corner_image = os.path.split(__file__)[0] + '/images/flower_corner_image.png',
+                 corner_image = os.path.split(__file__)[0][:-4] + '/images/flower_corner_image.png',
                  fps = 60):
         self.fps = fps
         self.end = False
