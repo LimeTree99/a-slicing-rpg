@@ -10,12 +10,14 @@ class Shift_sprite(Sprite):
         self.curr_onscreen_pos = pos
         self.accelerate = 5
 
-    def draw(self):
+    def draw(self, camera):
         pygame.draw.circle(self.display, color.white, self.onscreen_pos, self.radious)
 
     def to_onscreen_pos(self):
         if self.onscreen_pos != self.curr_onscreen_pos:
             pass
+
+
 
 class Alarm:
     '''
@@ -56,24 +58,41 @@ class Animate:
         
 
     
-            
+class Camera:
+    def __init__(self, offset=[0,0]):
+        self.offset = offset
+        self.pos = [0,0]
+
+    def update(self):
+        pass
+
+    def set_pos(self, pos):
+        self.pos = pos
+
+    def get_int_pos(self):
+        return int(self.pos[0]+self.offset[0]), int (self.pos[1]+self.offset[1])
+
+    
+
         
 class main_w_aron(Window):
     def __init__(self):
         super().__init__("Slice Slice")
-        self.aron = Shift_sprite(self.display, 
-                                (self.display.get_width() // 2, 
-                                self.display.get_height() // 2), 
-                                1, 0.5, 20)
+        self.camera = Camera((-self.display.get_width()//2, -self.display.get_height()//2))
+
+        self.aron = Sprite(self.display, (0,0), 1, 0.5, 20)
 
         self.bg = Background(self.display)
     
     def update(self):
-        self.bg.rect(color.green, (100,100,100,300))
-        self.bg.update((self.aron.x, self.aron.y))
-
+        self.bg.update()
         self.aron.update()
+        self.camera.set_pos((self.aron.x, self.aron.y))
 
+    def draw(self):
+        print(self.aron.x, self.aron.y)
+        self.bg.draw(self.camera.get_int_pos())
+        self.aron.draw(self.camera.get_int_pos())
 
     def keydown(self, key):
         super().keydown(key)

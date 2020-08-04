@@ -23,6 +23,9 @@ class Window:
 
     def update(self):
         pass
+
+    def draw(self):
+        pass
     
     def event_handle(self, event):
         pass
@@ -50,6 +53,7 @@ class Window:
             
             self.display.fill(self.background_colour)
             self.update()
+            self.draw()
             pygame.display.update()
             
             self.clock.tick(self.fps)
