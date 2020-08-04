@@ -1,5 +1,5 @@
 import pygame
-from lib.colour import *
+from lib.color import *
 
 class Sprite:
     def __init__(self, display, pos, push, friction, max_velocity):
