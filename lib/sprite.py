@@ -4,8 +4,7 @@ from lib.color import *
 class Sprite:
     def __init__(self, display, pos, push, friction, max_velocity):
         self.display = display
-        self.x = pos[0]
-        self.y = pos[1]
+        self.pos = pos
         self.vx = 0
         self.vy = 0
         self.ax = 0
@@ -22,14 +21,14 @@ class Sprite:
         self.radious = 40
 
     def draw(self, camera):
-        pygame.draw.circle(self.display, white, [int(self.x-camera[0]), int(self.y - camera[1])], self.radious)
+        pygame.draw.circle(self.display, white, [int(self.pos[0]-camera[0]), int(self.pos[1] - camera[1])], self.radious)
 
     def change_values(self):
         self.vx += self.ax
-        new_x = self.x + self.vx
+        new_x = self.pos[0] + self.vx
 
         self.vy += self.ay
-        new_y = self.y + self.vy
+        new_y = self.pos[1] + self.vy
 
         if self.vx > self.max_v:
             self.vx = self.max_v
@@ -77,7 +76,7 @@ class Sprite:
         if self.up:
             self.ay = -self.push
 
-        self.x, self.y = self.change_values()
+        self.pos = self.change_values()
 
 
 

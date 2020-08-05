@@ -52,7 +52,7 @@ class main_w_aron(Window):
     def update(self):
         self.bg.update()
         self.aron.update()
-        self.camera.go_to((self.aron.x, self.aron.y))
+        self.camera.go_to(self.aron.pos)
 
     def draw(self):
         self.bg.draw(self.camera.get_pos())
