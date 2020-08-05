@@ -1,4 +1,4 @@
-import pygame
+import pygame, math
 from lib import color, Sprite, Window, Background, math
 
 
@@ -59,12 +59,36 @@ class Animate:
 
     
 class Camera:
-    def __init__(self, offset=[0,0]):
+    def __init__(self, offset=[0,0], follow_speed=1):
         self.offset = offset
+        self.follow_speed = follow_speed
         self.pos = [0,0]
 
     def update(self):
         pass
+
+    def go_to(self, pos):
+        dx = abs(self.pos[0] - pos[0])
+        dy = abs(self.pos[1] - pos[1])
+        min_x = dx/self.follow_speed
+        min_y = dy/self.follow_speed
+
+        dirx = 0
+        if (pos[0] - self.pos[0]) > min_x or (self.pos[0] - pos[0]) > min_y:
+            if pos[0] < self.pos[0]:
+                dirx = -1
+            else:
+                dirx = 1
+        diry = 0
+        if (pos[1] - self.pos[1]) > min_x or (self.pos[1] - pos[1]) > min_y:
+            if pos[1] < self.pos[1]:
+                diry = -1
+            else:
+                diry = 1
+
+        self.pos[0] += dirx * min_x
+        self.pos[1] += diry * min_y
+        
 
     def set_pos(self, pos):
         self.pos = pos
@@ -80,7 +104,7 @@ class main_w_aron(Window):
     def __init__(self):
         super().__init__("Slice Slice")
         self.camera = Camera((-self.display.get_width()//2, 
-                            -self.display.get_height()//2))
+                            -self.display.get_height()//2), 7)
 
         self.aron = Sprite(self.display, (0,0), 1, 0.5, 20)
 
@@ -89,10 +113,9 @@ class main_w_aron(Window):
     def update(self):
         self.bg.update()
         self.aron.update()
-        self.camera.set_pos((self.aron.x, self.aron.y))
+        self.camera.go_to((self.aron.x, self.aron.y))
 
     def draw(self):
-        print(self.aron.x, self.aron.y)
         self.bg.draw(self.camera.get_pos())
         self.aron.draw(self.camera.get_pos())
 
