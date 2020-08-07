@@ -69,10 +69,16 @@ class Animate:
         if self.swap.timer():
             frame = self.next_fr(self.state)
 
+<<<<<<< HEAD
     def draw(self, pos):
         self.display.blit(self.current_frame(self.state), (self.pos[0] - pos[0], self.pos[1] - pos[1]))
       
         
+=======
+        self.display.blit(self.frames[self.frame], pos)
+
+  
+>>>>>>> master
 class main_w_aron(Window):
     def __init__(self):
         super().__init__("Slice Slice")
