@@ -38,8 +38,8 @@ class Animate:
                 self.frame += 1
 
         self.display.blit(self.frames[self.frame], pos)
-        
-        
+
+  
 class main_w_aron(Window):
     def __init__(self):
         super().__init__("Slice Slice")
