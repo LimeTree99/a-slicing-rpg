@@ -1,10 +1,6 @@
 import pygame, math
 from pathlib import Path
-from random import randint
-from lib import color, P_sprite, Window, \
-                Background, Camera, Animate, \
-                chance, Particles, Particle
-<<<<<<< HEAD
+
 from lib import color, Sprite, Window, Background, Camera, Animate
 
 
@@ -76,14 +72,12 @@ class GUI:
             self.comand = comand
         
         
-=======
 from random import randint
 from lib import color, P_sprite, Window, \
                 Background, Camera, Animate, \
                 chance, Particles, Particle
 
 
->>>>>>> particles
 class main_w_aron(Window):
     def __init__(self):
         super().__init__("Slice Slice")
@@ -93,16 +87,11 @@ class main_w_aron(Window):
         self.aron = P_sprite(self.display, (0,0), 1, 0.5, 20)
         self.bg = Background(self.display)
 
-        
-
-<<<<<<< HEAD
         self.label = GUI.Label(self.display, (10,10), \
                                 "Hi there what is going on there, is the line splitting working properly. I really hope so beacuse then I wouldn't have to fix anything\nsecond")
         
-=======
         self.render_list = [self.bg, self.aron]
 
->>>>>>> particles
 
     def update(self):
         for item in self.render_list:
