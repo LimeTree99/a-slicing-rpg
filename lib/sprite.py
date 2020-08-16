@@ -1,5 +1,7 @@
 import pygame
 from lib.color import *
+from lib import Particle, Particles
+
 
 class Sprite:
     def __init__(self, display, pos, push, friction, max_velocity):
@@ -79,7 +81,18 @@ class Sprite:
         self.pos = self.change_values()
 
 
+class P_sprite(Sprite):
+    def __init__(self, display, pos, push, friction, max_velocity):
+        super().__init__(display, pos, push, friction, max_velocity)
+        self.particles = Particles(self.display, self.pos)
 
+    def update(self):
+        super().update()
+        self.particles.pos = self.pos
+        self.particles.update()
+
+    def draw(self, camera):
+        self.particles.draw(camera)
 
 
 

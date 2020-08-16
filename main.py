@@ -1,5 +1,10 @@
 import pygame, math
 from pathlib import Path
+from random import randint
+from lib import color, P_sprite, Window, \
+                Background, Camera, Animate, \
+                chance, Particles, Particle
+<<<<<<< HEAD
 from lib import color, Sprite, Window, Background, Camera, Animate
 
 
@@ -71,33 +76,43 @@ class GUI:
             self.comand = comand
         
         
+=======
+from random import randint
+from lib import color, P_sprite, Window, \
+                Background, Camera, Animate, \
+                chance, Particles, Particle
+
+
+>>>>>>> particles
 class main_w_aron(Window):
     def __init__(self):
         super().__init__("Slice Slice")
         self.camera = Camera((-self.display.get_width()//2, 
                             -self.display.get_height()//2), 7)
 
-        self.aron = Sprite(self.display, (0,0), 1, 0.5, 20)
+        self.aron = P_sprite(self.display, (0,0), 1, 0.5, 20)
         self.bg = Background(self.display)
 
-        self.animate = Animate(self.display, (10, 50), "character.png", "sprite", (64, 64), 1000)
+        
 
+<<<<<<< HEAD
         self.label = GUI.Label(self.display, (10,10), \
                                 "Hi there what is going on there, is the line splitting working properly. I really hope so beacuse then I wouldn't have to fix anything\nsecond")
         
+=======
+        self.render_list = [self.bg, self.aron]
+
+>>>>>>> particles
 
     def update(self):
-        self.bg.update()
-        self.aron.update()
-        self.animate.update()
-
+        for item in self.render_list:
+            item.update()
+            
         self.camera.go_to(self.aron.pos)
 
     def draw(self):
-        
-        self.bg.draw(self.camera.get_pos())
-        self.aron.draw(self.camera.get_pos())
-        self.animate.draw(self.camera.get_pos())
+        for item in self.render_list:
+            item.draw(self.camera.get_pos())
 
         self.label.draw()
 
