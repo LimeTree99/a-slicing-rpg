@@ -1,23 +1,9 @@
 import pygame, math
 from pathlib import Path
 from random import randint
-from lib import color, Sprite, Window, \
+from lib import color, P_sprite, Window, \
                 Background, Camera, Animate, \
-                chance, Particles
-
-
-class P_sprite(Sprite):
-    def __init__(self, display, pos, push, friction, max_velocity):
-        super().__init__(display, pos, push, friction, max_velocity)
-        self.particles = Particles(self.display, self.pos)
-
-    def update(self):
-        super().update()
-        self.particles.pos = self.pos
-        self.particles.update()
-
-    def draw(self, camera):
-        self.particles.draw(camera)
+                chance, Particles, Particle
 
 
 class main_w_aron(Window):
@@ -29,19 +15,19 @@ class main_w_aron(Window):
         self.aron = P_sprite(self.display, (0,0), 1, 0.5, 20)
         self.bg = Background(self.display)
 
-        self.animate = Animate(self.display, (10, 50), "character.png", "sprite", (64, 64), 1000)
+        
 
-        self.render_listt = [self.bg, self.aron, self.animate]
+        self.render_list = [self.bg, self.aron]
 
 
     def update(self):
-        for item in self.render_listt:
+        for item in self.render_list:
             item.update()
             
         self.camera.go_to(self.aron.pos)
 
     def draw(self):
-        for item in self.render_listt:
+        for item in self.render_list:
             item.draw(self.camera.get_pos())
 
     def keydown(self, key):
