@@ -6,9 +6,11 @@ from lib import color, P_sprite, Window, \
                 chance, Particles, Particle, GUI
 
 
+
 class main_w_aron(Window):
     def __init__(self):
         super().__init__("Slice Slice")
+        
         self.camera = Camera((-self.display.get_width()//2, 
                             -self.display.get_height()//2), 7)
 
@@ -17,6 +19,11 @@ class main_w_aron(Window):
 
         self.label = GUI.Label(self.display, (10,10), \
                                 "Welcome to the start of the game!")
+
+        self.keydict = {pygame.K_w:self.aron.set_up, 
+                        pygame.K_s:self.aron.set_down, 
+                        pygame.K_a:self.aron.set_left,
+                        pygame.K_d:self.aron.set_right}
         
         self.render_list = [self.bg, self.aron]
 
@@ -35,24 +42,14 @@ class main_w_aron(Window):
 
     def keydown(self, key):
         super().keydown(key)
-        if key == pygame.K_w:
-            self.aron.up = True
-        if key == pygame.K_s:
-            self.aron.down = True
-        if key == pygame.K_a:
-            self.aron.left = True
-        if key == pygame.K_d:
-            self.aron.right = True
+        for k in self.keydict.keys():
+            if key == k:
+                self.keydict[k](True)
 
     def keyup(self, key):
-        if key == pygame.K_w:
-            self.aron.up = False
-        if key == pygame.K_s:
-            self.aron.down = False
-        if key == pygame.K_a:
-            self.aron.left = False
-        if key == pygame.K_d:
-            self.aron.right = False
+        for k in self.keydict.keys():
+            if key == k:
+                self.keydict[k](False)
 
 class main(main_w_aron):
     def __init__(self):

@@ -22,6 +22,18 @@ class Sprite:
 
         self.radious = 40
 
+    def set_left(self, val):
+        self.left = val
+
+    def set_down(self, val):
+        self.down = val
+
+    def set_up(self, val):
+        self.up = val
+
+    def set_right(self, val):
+        self.right = val
+
     def draw(self, camera):
         pygame.draw.circle(self.display, white, [int(self.pos[0]-camera[0]), int(self.pos[1] - camera[1])], self.radious)
 
