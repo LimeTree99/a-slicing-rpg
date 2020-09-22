@@ -1,6 +1,6 @@
 from .particles import Particle, Particles
 from .background import Background
-from .sprite import Sprite, P_sprite
+from .sprite import Sprite, P_sprite, projectile
 from .window import Window
 from .basics import Base, chance
 from .camera import Camera

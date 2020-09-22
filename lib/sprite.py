@@ -107,5 +107,19 @@ class P_sprite(Sprite):
         self.particles.draw(camera)
 
 
+class projectile:
+    def __init__(self, display, pos):
+        self.display = display
+        self.pos = pos
+        self.color = red
+        self.rad = 30
+
+    def update(self):
+        pass
+
+    def draw(self, camera):
+        pygame.draw.circle(self.display, self.color, (int(self.pos[0] - camera[0]),\
+            int(self.pos[1] - camera[1])), int(self.rad))
+
 
 
