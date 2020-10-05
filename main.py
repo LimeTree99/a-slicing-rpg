@@ -31,11 +31,10 @@ class main_w_aron(Window):
         for item in self.ui_render_list:
             item.draw()
 
-    def quit(self):
+    def quit(self, arg):
         self.end = True
 
     def keydown(self, key):
-        super().keydown(key)
         for k in self.keydict.keys():
             if key == k:
                 self.keydict[k](True)

@@ -34,8 +34,7 @@ class Window:
         pass
 
     def keydown(self, key):
-        if key == pygame.K_ESCAPE:
-            self.end = True 
+        pass
 
     def run(self):
         while not self.end:
@@ -49,7 +48,6 @@ class Window:
                 if event.type == pygame.KEYUP:
                     self.keyup(event.key)
                 self.event_handle(event)
-
             
             self.display.fill(self.background_colour)
             self.update()
@@ -57,6 +55,7 @@ class Window:
             pygame.display.update()
             
             self.clock.tick(self.fps)
+            
 
 
 
