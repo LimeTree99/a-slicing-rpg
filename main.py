@@ -7,6 +7,8 @@ from lib import color, P_sprite, Window, \
 
 
 
+
+
 class main_w_aron(Window):
     def __init__(self):
         super().__init__("Slice Slice")
@@ -25,11 +27,14 @@ class main_w_aron(Window):
             self.camera.go_to(self.camera_follow.pos)
 
     def draw(self):
+        
         for item in self.render_list:
             item.draw(self.camera.get_pos())
 
         for item in self.ui_render_list:
             item.draw()
+        pygame.draw.rect(self.display, (255,255,255), (0,0, 10,10))
+        pygame.draw.rect(self.display, (255,255,255), (self.display.get_width()-10,890, 10,10))
 
     def quit(self, arg):
         self.end = True
@@ -50,6 +55,8 @@ class main(main_w_aron):
         super().__init__()
         self.aron = P_sprite(self.display, (0,0), 1, 0.5, 20)
         self.bg = Background(self.display)
+
+        self.camera_follow = self.aron
 
         self.label = GUI.Label(self.display, (10,10), \
                                 "Welcome to the start of the game!")

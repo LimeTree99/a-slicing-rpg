@@ -9,19 +9,19 @@ class GUI:
             self.rect = rect
 
     class Label(Frame):
-        def __init__(self, display, pos, text='', font_size=20, char_width=20):
+        def __init__(self, display, pos, text='', font_size='m', char_width=20):
             super().__init__(display, [pos[0], pos[1], 0, 0])
             self.pos = pos
             self.text = text
             self.char_width = char_width
-            self.font = pygame.font.Font(GUI.FONT, font_size)
+            self.font_size = self.font_from_sml(font_size)
+            self.font = pygame.font.Font(GUI.FONT, self.font_size)
             self.fg = color.white
             self.bg = None
             self.image = None
             self.generate()
 
         def generate(self):
-            lines = self.text.split('\n')
             fonts = []
             width = 0
             height = 0
@@ -61,6 +61,14 @@ class GUI:
 
         def draw(self):
             self.display.blit(self.image, self.pos)
+
+        def font_from_sml(self, arg):
+            if arg == 's' or arg == 'S':
+                return int(self.display.get_height() / 54)
+            elif arg == 'm' or arg == 'M':
+                return int(self.display.get_height() / 37)
+            elif arg == 'l' or arg == 'L':
+                return int(self.display.get_height() / 20)
 
 
     class Button(Label):

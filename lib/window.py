@@ -1,5 +1,7 @@
 import pygame
 import os
+import ctypes
+
 
 class Window:
     def __init__(self,
@@ -12,6 +14,7 @@ class Window:
         self.background_colour = (0,0,0)
         self.events = 0
         
+        ctypes.windll.user32.SetProcessDPIAware()   #this is to fix if widows try to resize the window making it too big
         pygame.init()
         self.display = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
         
@@ -55,6 +58,7 @@ class Window:
             pygame.display.update()
             
             self.clock.tick(self.fps)
+
             
 
 
