@@ -10,14 +10,14 @@ from lib import color, P_sprite, Window, \
 
 
 class main_w_aron(Window):
-    def __init__(self):
-        super().__init__("Slice Slice")
+    def __init__(self, name):
+        super().__init__(name)
         
         self.camera = Camera((-self.display.get_width()//2, 
                             -self.display.get_height()//2), 7)
-        self.camera_follow = None
-        self.render_list = []
-        self.ui_render_list = []
+        self.camera_follow = None       #set this to an object with a .pos to have the camera follow it
+        self.render_list = []           #render relitive to camera
+        self.ui_render_list = []        #render without camera interference
         self.keydict = {pygame.K_ESCAPE:self.quit}
 
     def update(self):
@@ -33,8 +33,6 @@ class main_w_aron(Window):
 
         for item in self.ui_render_list:
             item.draw()
-        pygame.draw.rect(self.display, (255,255,255), (0,0, 10,10))
-        pygame.draw.rect(self.display, (255,255,255), (self.display.get_width()-10,890, 10,10))
 
     def quit(self, arg):
         self.end = True
@@ -52,14 +50,13 @@ class main_w_aron(Window):
 
 class main(main_w_aron):
     def __init__(self):
-        super().__init__()
+        super().__init__("GAME!!")
         self.aron = P_sprite(self.display, (0,0), 1, 0.5, 20)
         self.bg = Background(self.display)
 
         self.camera_follow = self.aron
 
-        self.label = GUI.Label(self.display, (10,10), \
-                                "Welcome to the start of the game!")
+        self.label = GUI.Label(self.display, "nw", "Welcome to the start of the game!")
 
         self.keydict = {pygame.K_ESCAPE:self.quit,
                         pygame.K_w:self.aron.set_up, 
