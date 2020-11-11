@@ -104,6 +104,7 @@ class P_sprite(Sprite):
         self.particles.update()
 
     def draw(self, camera):
+        
         self.particles.draw(camera)
 
 

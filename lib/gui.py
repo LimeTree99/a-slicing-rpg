@@ -38,7 +38,6 @@ class GUI:
             elif self.place == 'nw':
                 self.pos = (self.bd, self.bd)
 
-        
 
     class Label(Frame):
         def __init__(self, display, place, text='', font_size='m', char_width=20, border=10):
@@ -54,7 +53,6 @@ class GUI:
             self.generate()
 
         def generate(self):
-            lines = self.text.split('\n')
             fonts = []
             width = 0
             height = 0

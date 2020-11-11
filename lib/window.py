@@ -59,10 +59,6 @@ class Window:
             
             self.clock.tick(self.fps)
 
-            
-
-
-
 
 if __name__ == '__main__':
     

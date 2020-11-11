@@ -64,7 +64,7 @@ class main(main_w_aron):
                         pygame.K_a:self.aron.set_left,
                         pygame.K_d:self.aron.set_right}
         
-        self.render_list = [self.bg, self.aron, projectile(self.display, (100, 100))]
+        self.render_list = [self.bg, self.aron]
         self.ui_render_list = [self.label]
 
 
